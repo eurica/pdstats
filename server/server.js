@@ -19,7 +19,7 @@ var getCurrentState = function() {
     for (var i = 0; i < srvs.length; i++) {
       srv = srvs[i]
       srv.subdomain=subdomain;
-      srv.srv_weeks_old = Math.floor((Date.now() - new Date(srv.created_at)) / 7/86400000)
+      srv.srv_weeks_old = Math.max(Math.floor((Date.now() - new Date(srv.created_at)) / 7/86400000),1)
       srv.incidents_week = Math.floor(100*srv.incident_counts.total/srv.srv_weeks_old)/100
       if(srv.last_incident_timestamp) {
         srv.days_old = Math.floor((Date.now() - new Date(srv.last_incident_timestamp)) /86400000)

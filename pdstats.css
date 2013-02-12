@@ -29,9 +29,7 @@ a.service_name {
   text-align: center;
 }
 
-.all_services {
-}
-.all_services .service {
+.service {
   text-align: center;
   
   float: left;
@@ -51,19 +49,51 @@ a.service_name {
 
 
 }
-.all_services .critical_service {
+@-webkit-keyframes pulsered {
+      0% {background-color: #f00;}
+      80% {background-color: #a00;}
+      100% {background-color: #800;}
+}
+@-webkit-keyframes pulseyellow {
+      0% {background-color: #880;}
+      100% {background-color: #dc3;}
+}
+@-moz-keyframes pulsered {
+      0% {background-color: #f00;}
+      80% {background-color: #a00;}
+      100% {background-color: #800;}
+}
+@-moz-keyframes pulseyellow {
+      0% {background-color: #880;}
+      100% {background-color: #dc3;}
+}
+@-keyframes pulsered {
+      0% {background-color: #f00;}
+      80% {background-color: #a00;}
+      100% {background-color: #800;}
+}
+@-keyframes pulseyellow {
+      0% {background-color: #880;}
+      100% {background-color: #dc3;}
+}
+
+.critical_service {
   background-image: url(/img/critical.png);
   background-color: #f00;
+  -webkit-animation: pulsered 2s infinite alternate;
 }
-.all_services .warning_service {
+.warning_service {
   background-image: url(/img/warning.png);
-  background-color: #880;
+  background-color: #aa0;
+  -webkit-animation: pulseyellow 3s infinite alternate;  
 }
-.all_services .active_service {
+.active_service {
   background-image: url(/img/active.png);
   background-color: #0d0;
 }
-.all_services .disabled_service {
+.disabled_service {
   background-image: url(/img/paused.png);
   background-color: #666;
 }
+
+

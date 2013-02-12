@@ -1,19 +1,3 @@
-Template.intro.greeting = function () {
-  return "Listing " + Services.find().count() + " services"
-};
-
-Template.intro.events({
-  'click input' : function () {
-    // template data, if any, is available in 'this'
-    Meteor.call('updateCurrentState', function(error, result) {
-      console.log(result);
-      console.log(error);
-    })
-    if (typeof console !== 'undefined')
-      console.log(this.Template);
-  }
-});
-
 Template.all_services.services = function () {
   s= Services.find({}, {sort: {last_incident_timestamp: -1}});
   console.log(s);
@@ -27,6 +11,6 @@ Meteor.startup(function () {
     Meteor.call('updateCurrentState', function(error, result) {
       if(error) console.log(error);
     })
-    }, 60000)
+    }, 30000)
   
 });

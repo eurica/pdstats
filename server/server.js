@@ -14,7 +14,7 @@ var getCurrentState = function() {
   console.log("Updating " + (new Date()).toLocaleString())
   if (h.content) {
     s = JSON.parse(h.content)
-    Services.remove({});
+    Services.remove({"subdomain":subdomain}); //TODO: multiple subdomains on one instance of pdstats
     srvs = s.services
     for (var i = 0; i < srvs.length; i++) {
       srv = srvs[i]

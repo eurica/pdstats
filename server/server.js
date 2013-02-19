@@ -1,4 +1,7 @@
 Meteor.methods({
+  //TODO: right now there's no rate limiting.
+  //Since this is a demo, I assume it's rarely running, if it was in production, I'd refresh on the server every 30 seconds 
+  //(downside: it'll refresh even if no-one ever looks at the app)
   updateCurrentState: function() {
     return getCurrentState()
   }
@@ -14,7 +17,6 @@ var getCurrentState = function() {
   console.log("Updating " + (new Date()).toLocaleString())
   if (h.content) {
     s = JSON.parse(h.content)
-    Services.remove({"subdomain":subdomain}); //TODO: the plan was to handle multiple subdomains
     srvs = s.services
     for (var i = 0; i < srvs.length; i++) {
       srv = srvs[i]
@@ -26,7 +28,14 @@ var getCurrentState = function() {
       } else {
         srv.days_old = "never"
       }
-      Services.insert(srv);
+
+      //From docs: The Mongo upsert feature is not implemented.
+      service = Services.findOne({id: srv["id"]})
+      if(!service) {
+        Services.insert(srv);
+      } else {
+        Services.update(service, srv);
+      }
     }
   }
 

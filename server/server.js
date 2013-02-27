@@ -7,10 +7,6 @@ Meteor.methods({
   }
 });
 
-Meteor.startup(function () {
-  getCurrentState();
-});
-
 var getCurrentState = function() {
   var url = "https://"+subdomain+".pagerduty.com/api/v1/services"
   var h = Meteor.http.call("GET", url, {"headers": {"Authorization":"Token token="+auth_token}})
@@ -38,5 +34,4 @@ var getCurrentState = function() {
       }
     }
   }
-
 }

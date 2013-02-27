@@ -1,5 +1,5 @@
 Template.all_services.services = function () {
-  s= Services.find({}, {sort: {last_incident_timestamp: -1}});
+  s = Services.find({}, {sort: {last_incident_timestamp: -1}});
   return s;
 };
 
